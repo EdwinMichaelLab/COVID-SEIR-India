@@ -12,11 +12,11 @@ script `Main.m`:
 
 This will produce output `India.mat`, which contains the predictions of all
 state functions until the end of the year. With this file loaded, you can plot
-median proportion of people immune using the following code:
+median proportion of people immune using the following:
 
 `plot(median(V+B+R2, 2));`
 
-Other state functions can be visualized similarly.
+Other state functions can be visualized in a similar way.
 
 ## Running alternative social measure / vaccination scenarios
 
@@ -25,12 +25,12 @@ The impact of social measures on transmission is captured via a scaling factor,
 lines to `diff_eqn1.m`, just before the definitions of the differential
 equations:
 ```
-if t > 427 && t < 427+30
+if t < 427+30
      d = d*1.25;
 end
  ```
 
-where t = 427 is May 5th, the final data point.
+t = 427 is May 5th, the last data point.
 
 To increase/decrease the vaccination rate, adjust line 444 in
 `BM_SEIR_model.m`. For instance, to double the vaccination rate
@@ -40,10 +40,6 @@ going forward:
 
 This would apply 2 times the average daily vaccination rate over the
 last 21 days.
-
-# Extended SEIR Model 
-In this study, we simulated the ongoing SARS-CoV-2 outbreaks in the United States and India using a variation of an SEIR model described in detail in Newcomb and colleagues.1 The Ordinary Differential Equations (ODEs) describing the model are given fully below in Equations. Briefly, we assume each country is a closed population and ignore demographic changes such that the total population size remains constant. The population is divided into compartments representing various infection stages: susceptible (S), exposed (E), infectious asymptomatic (IA), infectious pre-symptomatic (IP), infectious with mild symptoms (IM), infectious with severe symptoms requiring hospitalization (IH), infectious with severe symptoms requiring intensive care including ventilation (IC), recovered and immune (R), first-dose vaccinated (V), completely vaccinated (B), and deceased (D). The specific transitions and rate parameters governing the evolution of the system, along with their prior and posterior fitted values, are described in the Table. The prevailing strength of social distancing measures is captured through the estimation of a scaling factor, d, which is multiplied by the transmission rate, beta, to obtain the population-level transmission intensity prevalent in each population. This factor accounts for the transmission modifying effects of mask wearing, reductions in mobility and mixing, work from home, and any other deviations from the normal social behavior of each population prior to the epidemic. The vaccination data for the US and India is directly applied by moving the proportion of the population that is vaccinated over a 10- day block from the S class to the V (1st dose) class. Individuals then move from the V to the B (2nd dose booster) class at a daily rate approximating a 21 day interval between vaccine doses. Average vaccination rates estimated from the last 3 weeks of vaccination data (April 15th -May 6th) were used to simulate into the future. The future impacts of changes in social mitigation interventions and vaccination rates are simulated by altering the values of d and the vaccination rate estimated for each country.
-
 
 System of ODEs
 -------------
