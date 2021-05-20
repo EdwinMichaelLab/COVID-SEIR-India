@@ -12,11 +12,11 @@ script `Main.m`:
 
 This will produce output `India.mat`, which contains the predictions of all
 state functions until the end of the year. With this file loaded, you can plot
-median proportion of people immune using the following:
+median proportion of people immune using the following code:
 
 `plot(median(V+B+R2, 2));`
 
-Other state functions can be visualized in a similar way.
+Other state functions can be visualized similarly.
 
 ## Running alternative social measure / vaccination scenarios
 
@@ -25,12 +25,12 @@ The impact of social measures on transmission is captured via a scaling factor,
 lines to `diff_eqn1.m`, just before the definitions of the differential
 equations:
 ```
-if t < 427+30
+if t > 427 && t < 427+30
      d = d*1.25;
 end
  ```
 
-t = 427 is May 5th, the last data point.
+where t = 427 is May 5th, the final data point.
 
 To increase/decrease the vaccination rate, adjust line 444 in
 `BM_SEIR_model.m`. For instance, to double the vaccination rate
