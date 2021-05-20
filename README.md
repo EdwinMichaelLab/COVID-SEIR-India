@@ -2,6 +2,44 @@ COVID-SEIR-India
 ----------------
 This repository stores the code, equations, and parameters associated with the Michael Group SEIR model.
 
+# Project Guide
+## Fitting and running the base scenario
+The repository comes with India's daily case, death, and vaccination data up to
+May 5th, which can be found in `India.csv`. The main project is run via the
+script `Main.m`:
+
+`matlab -nodisplay -nosplash < Main.m`
+
+This will produce output `India.mat`, which contains the predictions of all
+state functions until the end of the year. With this file loaded, you can plot
+median proportion of people immune using the following:
+
+`plot(median(V+B+R2, 2));`
+
+Other state functions can be visualized in a similar way.
+
+## Running alternative social measure / vaccination scenarios
+
+The impact of social measures on transmission is captured via a scaling factor,
+`d`. To simulate 30 days of +25% increased social measures, add the following
+lines to `diff_eqn1.m`, just before the definitions of the differential
+equations:
+```
+if t < 427+30
+     d = d*1.25;
+end
+ ```
+
+t = 427 is May 5th, the last data point.
+
+To increase/decrease the vaccination rate, adjust line 444 in
+`BM_SEIR_model.m`. For instance, to double the vaccination rate
+going forward:
+
+`totalv = 2*mean(Vaccinated(end-21:end));`
+
+This would apply 2 times the average daily vaccination rate over the
+last 21 days.
 
 System of ODEs
 -------------
