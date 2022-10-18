@@ -56,7 +56,7 @@ Table of Parameters/Priors
 Model parameter priors, along with best-fitting values.
 
 | Parameter | Definition | **Prior range** | **Median Fit, India** | Units/notes |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | β | Infection transmission rate | **0.125 – 2.0** | **0.3254** | Estimated as R0\*gamma in SIR model |
 | σ | Rate of moving from exposed class to infectious class | **0.16 – 0.5** | **0.3016** | 1/σ is the latent period; assumed 2-6 days |
 | ⍴ | Proportion of exposed who become asymptomatic | **0.25 – 0.50** | **0.3785** |   |
